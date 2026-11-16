@@ -1,353 +1,115 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Encontre a Sua Recompensa · Moçambique</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificação Rápida</title>
 
-    html, body {
-      height: 100%;
-      overflow: hidden;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 10% 30%, #f0f4ff, #cfd9f0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f6fb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
 
-    .container {
-      width: 100%;
-      max-width: 420px;
-      height: 100vh;
-      max-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin: 0 auto;
-    }
+.card{
+    width:100%;
+    max-width:360px;
+    background:#fff;
+    border-radius:18px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
 
-    .progress-wrapper {
-      margin-bottom: 1.5rem;
-      padding: 0 0.25rem;
-    }
+.badge{
+    display:inline-block;
+    padding:6px 14px;
+    background:#eef6ff;
+    color:#0066ff;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+}
 
-    .progress-track {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(4px);
-      border-radius: 999px;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-    }
+h1{
+    font-size:24px;
+    color:#111;
+    margin-bottom:12px;
+}
 
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #5b3cc4, #7e5bef);
-      border-radius: 999px;
-      transition: width 0.45s cubic-bezier(0.2, 0.9, 0.3, 1);
-    }
+p{
+    font-size:15px;
+    color:#666;
+    line-height:1.6;
+    margin-bottom:24px;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 2.5rem;
-      padding: 2.5rem 1.75rem 3rem;
-      box-shadow: 0 25px 50px -10px rgba(20, 30, 60, 0.25),
-                  inset 0 1px 2px rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-height: 80vh;
-    }
+.btn{
+    display:block;
+    width:100%;
+    text-decoration:none;
+    background:#111;
+    color:#fff;
+    padding:16px;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:700;
+    transition:.2s;
+}
 
-    .question {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      color: #121826;
-      text-align: center;
-      margin-bottom: 2rem;
-      text-wrap: balance;
-    }
+.btn:hover{
+    opacity:.95;
+}
 
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+.btn:active{
+    transform:scale(.98);
+}
 
-    .option {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 1.2rem 1.5rem;
-      font-family: inherit;
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: white;
-      background: linear-gradient(145deg, #5b3cc4, #492da8);
-      border: none;
-      border-radius: 1.8rem;
-      cursor: pointer;
-      box-shadow: 0 10px 18px -8px rgba(73, 45, 168, 0.4),
-                  0 4px 8px -2px rgba(0, 0, 0, 0.05);
-      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      position: relative;
-      overflow: hidden;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .option::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .option:hover {
-      background: linear-gradient(145deg, #6a4ad6, #5538bf);
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 18px 28px -10px #492da8, 0 6px 12px -4px rgba(0,0,0,0.15);
-    }
-
-    .option:hover::after {
-      opacity: 1;
-    }
-
-    .option:active {
-      transform: translateY(1px) scale(0.99);
-      box-shadow: 0 8px 14px -8px #492da8;
-    }
-
-    .loading-screen {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1rem 0 0.5rem;
-    }
-
-    .spinner {
-      width: 4rem;
-      height: 4rem;
-      border: 5px solid rgba(91, 60, 196, 0.15);
-      border-top: 5px solid #5b3cc4;
-      border-right: 5px solid #5b3cc4;
-      border-radius: 50%;
-      animation: spin 0.9s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite;
-      margin-bottom: 1.75rem;
-      box-shadow: 0 6px 18px rgba(91, 60, 196, 0.2);
-    }
-
-    .loading-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #121826;
-      margin-bottom: 0.75rem;
-    }
-
-    .loading-sub {
-      font-size: 1rem;
-      font-weight: 400;
-      color: #4d5670;
-      max-width: 22rem;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Small phones */
-    @media (max-width: 420px) {
-      body {
-        padding: 0.75rem;
-      }
-
-      .card {
-        padding: 2rem 1.25rem 2.5rem;
-        border-radius: 2rem;
-        max-height: 85vh;
-      }
-
-      .question {
-        font-size: 1.65rem;
-        margin-bottom: 1.75rem;
-      }
-
-      .option {
-        font-size: 1.1rem;
-        padding: 1.05rem 1.25rem;
-        border-radius: 1.5rem;
-      }
-
-      .loading-title {
-        font-size: 1.5rem;
-      }
-
-      .loading-sub {
-        font-size: 0.9rem;
-      }
-
-      .spinner {
-        width: 3.2rem;
-        height: 3.2rem;
-      }
-    }
-
-    /* Short screens (landscape phones) */
-    @media (max-height: 640px) {
-      .card {
-        padding: 1.75rem 1.5rem 2rem;
-      }
-      .question {
-        font-size: 1.5rem;
-        margin-bottom: 1.25rem;
-      }
-      .option {
-        padding: 0.9rem 1.25rem;
-        font-size: 1.05rem;
-      }
-      .spinner {
-        width: 2.75rem;
-        height: 2.75rem;
-        margin-bottom: 1rem;
-      }
-    }
-
-    /* Extra small screens */
-    @media (max-width: 360px) {
-      .question {
-        font-size: 1.45rem;
-      }
-      .option {
-        font-size: 1rem;
-        padding: 0.9rem 1rem;
-      }
-    }
-  </style>
+.note{
+    margin-top:16px;
+    color:#888;
+    font-size:12px;
+}
+</style>
+<link rel="me" href="https://www.blogger.com/profile/04209175009256562906" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
 </head>
+
 <body>
 
-  <div class="container">
-    <div class="progress-wrapper">
-      <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-    </div>
+<div class="card">
 
-    <div class="card">
-      <!-- PASSO 1 — MOÇAMBIQUE? -->
-      <div id="mozambiqueStep">
-        <h1 class="question">É de Moçambique?</h1>
-        <div class="options">
-          <button class="option" onclick="selectMozambique('Sim')">SIM</button>
-          <button class="option" onclick="selectMozambique('Não')">NÃO</button>
-        </div>
-      </div>
+<div class="badge">🇲🇿 Moçambique</div>
 
-      <!-- PASSO 2 — IDADE -->
-      <div id="ageStep" class="hidden">
-        <h1 class="question">Qual é a sua idade?</h1>
-        <div class="options">
-          <button class="option" onclick="selectAge('15-25')">15–25 ANOS</button>
-          <button class="option" onclick="selectAge('26-35')">26–35 ANOS</button>
-          <button class="option" onclick="selectAge('36+')">36 ANOS OU MAIS</button>
-        </div>
-      </div>
+<h1>Verificação Rápida</h1>
 
-      <!-- A CARREGAR -->
-      <div id="loadingStep" class="loading-screen">
-        <div class="spinner"></div>
-        <div class="loading-title">A procurar a sua recompensa…</div>
-        <div class="loading-sub">Aguarde enquanto verificamos as melhores ofertas para si.</div>
-      </div>
-    </div>
-  </div>
+<p>
+Responda a algumas perguntas simples para ver quais oportunidades ou opções podem estar disponíveis para si.
+</p>
 
-  <script>
-    const LINK = "https://ldl1.com/link?z=11892232&var={SOURCE_ID}&ymid={CLICK_ID}";
+<a class="btn" href="https://1buv.com/link?z=11082555&var={SOURCE_ID}&ymid={CLICK_ID}">
+    Saber Mais
+</a>
 
-    const progressFill = document.getElementById('progressFill');
-    const mozambiqueStep = document.getElementById('mozambiqueStep');
-    const ageStep = document.getElementById('ageStep');
-    const loadingStep = document.getElementById('loadingStep');
+<div class="note">
+✓ Gratuito para verificar &nbsp; • &nbsp; ✓ Leva cerca de 1 minuto
+</div>
 
-    let selectedMozambique = "";
-    let selectedAge = "";
+</div>
 
-    /* PASSO 1 — MOÇAMBIQUE */
-    function selectMozambique(answer) {
-      selectedMozambique = answer;
-
-      // Barra de progresso para 50%
-      progressFill.style.width = "50%";
-
-      // Esconder a pergunta sobre Moçambique
-      mozambiqueStep.classList.add('hidden');
-
-      // Mostrar a pergunta sobre a idade
-      ageStep.classList.remove('hidden');
-    }
-
-    /* PASSO 2 — IDADE */
-    function selectAge(age) {
-      selectedAge = age;
-
-      // Completar a barra de progresso
-      progressFill.style.width = "100%";
-
-      // Esconder a pergunta sobre a idade
-      ageStep.classList.add('hidden');
-
-      // Mostrar o ecrã de carregamento
-      loadingStep.style.display = "flex";
-
-      // Redirecionar após 2,5 segundos
-      setTimeout(function() {
-        window.location.href = LINK;
-      }, 2500);
-    }
-
-    // Garantir que o ecrã de carregamento começa escondido
-    window.addEventListener('load', function() {
-      progressFill.style.width = "0%";
-      loadingStep.style.display = "none";
-    });
-  </script>
 </body>
 </html>
